@@ -32,9 +32,8 @@ public class UsuarioService {
 	}
 
 	public UsuarioDto cadastrarUsuario(UsuarioDto usuarioDto) {
-		boolean usuarioCadastrado = this.usuarioRepository.existsByEmail(usuarioDto.getEmail());
-		if (usuarioCadastrado) {
-			System.out.println("Usuário já cadastrado");
+		
+		if (this.usuarioRepository.existsByEmail(usuarioDto.getEmail())) {
 			return null;
 		}
 
@@ -51,10 +50,9 @@ public class UsuarioService {
 		Optional<UsuarioModel> usuarioOptional = this.usuarioRepository.findById(id);
 
 		if (usuarioOptional.isEmpty()) {
-			System.out.println("Usuário não existente");
 			return null;
 		}
-
+ 
 		return new UsuarioDto(usuarioOptional.get());
 	}
 
@@ -62,7 +60,6 @@ public class UsuarioService {
 		Optional<UsuarioModel> usuarioOptional = this.usuarioRepository.findById(id);
 
 		if (usuarioOptional.isEmpty()) {
-			System.out.println("Usuário não existente");
 			return null;
 		}
 
@@ -76,9 +73,7 @@ public class UsuarioService {
 	public void excluirUsuario(Long id) {
 		
 		Optional<UsuarioModel> usuarioOptional = this.usuarioRepository.findById(id);
-		if(usuarioOptional.isEmpty()) {
-			System.out.println("Usuário não existente");
-		}
+
 		this.usuarioRepository.delete(usuarioOptional.get());
 	}
 
