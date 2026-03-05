@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.venancio.api.usuario.springboot.dto.UsuarioDto;
+import com.venancio.api.usuario.springboot.dto.UsuarioRequestDTO;
+import com.venancio.api.usuario.springboot.dto.UsuarioResponseDTO;
 import com.venancio.api.usuario.springboot.service.UsuarioService;
 
 @RestController
@@ -27,24 +28,24 @@ public class UsuarioController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<UsuarioDto>> listaUsuarios() {
-
+	public ResponseEntity<List<UsuarioResponseDTO>> listaUsuarios() {
+ 
 		return ResponseEntity.status(HttpStatus.OK).body(this.usuarioService.listarUsuarios());
 	}
 
 	@PostMapping
-	public ResponseEntity<UsuarioDto> cadastrarUsuario(@RequestBody UsuarioDto usuarioDto) {
+	public ResponseEntity<UsuarioResponseDTO> cadastrarUsuario(@RequestBody UsuarioRequestDTO usuarioDto) {
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(this.usuarioService.cadastrarUsuario(usuarioDto));
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<UsuarioDto> mostrarUsuarioId(@PathVariable Long id) {
+	public ResponseEntity<UsuarioResponseDTO> mostrarUsuarioId(@PathVariable Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.usuarioService.mostrarUsuarioId(id));
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<UsuarioDto> atualizarUsuario(@PathVariable Long id, @RequestBody UsuarioDto usuarioDto) {
+	public ResponseEntity<UsuarioResponseDTO> atualizarUsuario(@PathVariable Long id, @RequestBody UsuarioRequestDTO usuarioDto) {
 
 		return ResponseEntity.status(HttpStatus.OK).body(this.usuarioService.atualizarUsuario(id, usuarioDto));
 	}

@@ -2,11 +2,14 @@ package com.venancio.api.usuario.springboot.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.venancio.api.usuario.springboot.dto.UsuarioDto;
+import com.venancio.api.usuario.springboot.dto.UsuarioRequestDTO;
+import com.venancio.api.usuario.springboot.dto.UsuarioResponseDTO;
+import com.venancio.api.usuario.springboot.exception.EmailJaCadastradoException;
+import com.venancio.api.usuario.springboot.exception.RecursoNaoEncontradoException;
 import com.venancio.api.usuario.springboot.model.UsuarioModel;
 import com.venancio.api.usuario.springboot.repository.UsuarioRepository;
 
@@ -19,22 +22,22 @@ public class UsuarioService {
 		this.usuarioRepository = usuarioRepository;
 	}
 
-	public List<UsuarioDto> listarUsuarios() {
+	public List<UsuarioResponseDTO> listarUsuarios() {
 		List<UsuarioModel> listaModel = this.usuarioRepository.findAll();
 
-		List<UsuarioDto> listaDto = new ArrayList<>();
+		List<UsuarioResponseDTO> listaDto = new ArrayList<>();
 
 		for (UsuarioModel usuario : listaModel) {
-			listaDto.add(new UsuarioDto(usuario));
+			listaDto.add(new UsuarioResponseDTO(usuario));
 		}
 
 		return listaDto;
 	}
 
-	public UsuarioDto cadastrarUsuario(UsuarioDto usuarioDto) {
-		
+	public UsuarioResponseDTO cadastrarUsuario(UsuarioRequestDTO usuarioDto) {
+
 		if (this.usuarioRepository.existsByEmail(usuarioDto.getEmail())) {
-			return null;
+			throw new EmailJaCadastradoException("Email já cadastrado: " + usuarioDto.getEmail());
 		}
 
 		UsuarioModel usuario = new UsuarioModel();
@@ -43,38 +46,33 @@ public class UsuarioService {
 
 		UsuarioModel usuarioModel = this.usuarioRepository.save(usuario);
 
-		return new UsuarioDto(usuarioModel);
+		return new UsuarioResponseDTO(usuarioModel);
 	}
 
-	public UsuarioDto mostrarUsuarioId(Long id) {
-		Optional<UsuarioModel> usuarioOptional = this.usuarioRepository.findById(id);
-
-		if (usuarioOptional.isEmpty()) {
-			return null;
-		}
- 
-		return new UsuarioDto(usuarioOptional.get());
-	}
-
-	public UsuarioDto atualizarUsuario(Long id, UsuarioDto usuarioDto) {
-		Optional<UsuarioModel> usuarioOptional = this.usuarioRepository.findById(id);
-
-		if (usuarioOptional.isEmpty()) {
-			return null;
-		}
-
-		UsuarioModel usuarioModel = usuarioOptional.get();
-		usuarioModel.setNome(usuarioDto.getNome());
-		usuarioModel.setEmail(usuarioDto.getEmail());
-
-		return new UsuarioDto(this.usuarioRepository.save(usuarioModel));
-	}
-	
-	public void excluirUsuario(Long id) {
+	public UsuarioResponseDTO mostrarUsuarioId(Long id) {
 		
-		Optional<UsuarioModel> usuarioOptional = this.usuarioRepository.findById(id);
+		UsuarioModel usuario = this.usuarioRepository.findById(id).orElseThrow(
+				() -> new RecursoNaoEncontradoException("Usuário não encontrado com id: " + id));
 
-		this.usuarioRepository.delete(usuarioOptional.get());
+		return new UsuarioResponseDTO(usuario);
+	}
+
+	public UsuarioResponseDTO atualizarUsuario(Long id, UsuarioRequestDTO usuarioDto) {
+		UsuarioModel usuario = this.usuarioRepository.findById(id).orElseThrow(
+				() -> new RecursoNaoEncontradoException("Usuário não encontrado com id: " + id));
+
+		usuario.setNome(usuarioDto.getNome());
+		usuario.setEmail(usuarioDto.getEmail());
+
+		return new UsuarioResponseDTO(this.usuarioRepository.save(usuario));
+	}
+
+	public void excluirUsuario(Long id) {
+
+		UsuarioModel usuario = this.usuarioRepository.findById(id).orElseThrow(
+				() -> new RecursoNaoEncontradoException("Usuário não encontrado com id: " + id)); 
+
+		this.usuarioRepository.delete(usuario);
 	}
 
 }
