@@ -1,8 +1,15 @@
 package com.venancio.api.usuario.springboot.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class UsuarioRequestDTO {
 
+	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
+	
+	@NotBlank(message = "Email é obrigatório")
+	@Email(message = "Email inválido")
 	private String email;
 
 	public String getNome() {

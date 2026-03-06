@@ -1,6 +1,7 @@
 package com.venancio.api.usuario.springboot.exception;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 public class ApiError {
 	private LocalDateTime timestamp;
@@ -8,6 +9,8 @@ public class ApiError {
 	private String error;
 	private String message;
 	private String path;
+
+	private Map<String, String> erros;
 
 	public ApiError(LocalDateTime timestamp, int status, String error, String message, String path) {
 		this.timestamp = timestamp;
@@ -55,5 +58,13 @@ public class ApiError {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public Map<String, String> getErros() {
+		return erros;
+	}
+
+	public void setErros(Map<String, String> erros) {
+		this.erros = erros;
 	}
 }
