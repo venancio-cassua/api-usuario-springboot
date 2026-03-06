@@ -17,6 +17,8 @@ import com.venancio.api.usuario.springboot.dto.UsuarioRequestDTO;
 import com.venancio.api.usuario.springboot.dto.UsuarioResponseDTO;
 import com.venancio.api.usuario.springboot.service.UsuarioService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -34,7 +36,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping
-	public ResponseEntity<UsuarioResponseDTO> cadastrarUsuario(@RequestBody UsuarioRequestDTO usuarioDto) {
+	public ResponseEntity<UsuarioResponseDTO> cadastrarUsuario(@Valid @RequestBody UsuarioRequestDTO usuarioDto) {
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(this.usuarioService.cadastrarUsuario(usuarioDto));
 	}
@@ -45,7 +47,7 @@ public class UsuarioController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<UsuarioResponseDTO> atualizarUsuario(@PathVariable Long id, @RequestBody UsuarioRequestDTO usuarioDto) {
+	public ResponseEntity<UsuarioResponseDTO> atualizarUsuario(@PathVariable Long id, @Valid @RequestBody UsuarioRequestDTO usuarioDto) {
 
 		return ResponseEntity.status(HttpStatus.OK).body(this.usuarioService.atualizarUsuario(id, usuarioDto));
 	}
@@ -54,6 +56,6 @@ public class UsuarioController {
 	public ResponseEntity<Void> excluirUsuario(@PathVariable Long id) {
 		this.usuarioService.excluirUsuario(id);
 		return ResponseEntity.noContent().build();
-	}
+	} 
 
 }
