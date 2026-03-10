@@ -48,17 +48,30 @@ Estrutura principal:
 - exception → Tratamento global de exceções da API
 - config → Configurações da aplicação (Swagger / OpenAPI)
 
+  ---
+
+## 🏗 Estrutura do projeto
+
+Organização das camadas da aplicação.
+
+![Estrutura do Projeto](docs/estrutura-projeto.PNG)
+
 ---
 
 ## 📚 Documentação da API
 
 A API possui documentação interativa utilizando **Swagger / OpenAPI**, permitindo visualizar e testar os endpoints diretamente pelo navegador.
 
-Após executar a aplicação, acesse: http://localhost:8080/swagger-ui.html
+Após executar a aplicação, acesse: http://localhost:8080/swagger-ui/index.html
 ### Interface Swagger
 
 ![Swagger UI](imagens/swagger-ui.PNG)
 
+## 📡 Exemplo de resposta da API
+
+Exemplo de resposta JSON retornada pela API.
+
+![Resposta da API](docs/api-response.PNG) 
 
 ## ⚙️ Como executar o projeto
 
