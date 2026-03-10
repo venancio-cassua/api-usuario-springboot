@@ -57,7 +57,7 @@ A API possui documentação interativa utilizando **Swagger / OpenAPI**, permiti
 Após executar a aplicação, acesse: http://localhost:8080/swagger-ui.html
 ### Interface Swagger
 
-![Swagger UI](imagens/swagger-ui.png)
+![Swagger UI](imagens/swagger-ui.PNG)
 
 
 ## ⚙️ Como executar o projeto
