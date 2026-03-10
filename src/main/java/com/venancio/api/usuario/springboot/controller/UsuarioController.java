@@ -17,6 +17,7 @@ import com.venancio.api.usuario.springboot.dto.UsuarioRequestDTO;
 import com.venancio.api.usuario.springboot.dto.UsuarioResponseDTO;
 import com.venancio.api.usuario.springboot.service.UsuarioService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -29,29 +30,34 @@ public class UsuarioController {
 		this.usuarioService = usuarioService;
 	}
 
+	@Operation(summary = "Listar todos os usuários")
 	@GetMapping
 	public ResponseEntity<List<UsuarioResponseDTO>> listaUsuarios() {
  
 		return ResponseEntity.status(HttpStatus.OK).body(this.usuarioService.listarUsuarios());
 	}
 
+	@Operation(summary = "Cadastrar novo usuário")
 	@PostMapping
 	public ResponseEntity<UsuarioResponseDTO> cadastrarUsuario(@Valid @RequestBody UsuarioRequestDTO usuarioDto) {
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(this.usuarioService.cadastrarUsuario(usuarioDto));
 	}
 
+	@Operation(summary = "Buscar usuário por ID")
 	@GetMapping("/{id}")
 	public ResponseEntity<UsuarioResponseDTO> mostrarUsuarioId(@PathVariable Long id) {
 		return ResponseEntity.status(HttpStatus.OK).body(this.usuarioService.mostrarUsuarioId(id));
 	}
 
+	@Operation(summary = "Atualizar usuário")
 	@PutMapping("/{id}")
 	public ResponseEntity<UsuarioResponseDTO> atualizarUsuario(@PathVariable Long id, @Valid @RequestBody UsuarioRequestDTO usuarioDto) {
 
 		return ResponseEntity.status(HttpStatus.OK).body(this.usuarioService.atualizarUsuario(id, usuarioDto));
 	}
 
+	@Operation(summary = "Excluir usuário")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> excluirUsuario(@PathVariable Long id) {
 		this.usuarioService.excluirUsuario(id);
