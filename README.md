@@ -1,6 +1,6 @@
 # API Usuário - Spring Boot
 
-## 📌 Sobre o projeto
+## Sobre o projeto
 
 Este projeto consiste no desenvolvimento de uma API REST para gerenciamento de usuários, construída com Java e Spring Boot.  
 O objetivo foi aplicar boas práticas de desenvolvimento backend, organização em camadas e padrões comuns utilizados em aplicações corporativas.
@@ -50,7 +50,7 @@ Estrutura principal:
 
   ---
 
-## 🏗 Estrutura do projeto
+## Estrutura do projeto
 
 Organização das camadas da aplicação.
 
@@ -58,7 +58,7 @@ Organização das camadas da aplicação.
 
 ---
 
-## 📚 Documentação da API
+## Documentação da API
 
 A API possui documentação interativa utilizando **Swagger / OpenAPI**, permitindo visualizar e testar os endpoints diretamente pelo navegador.
 
@@ -67,13 +67,13 @@ Após executar a aplicação, acesse: http://localhost:8080/swagger-ui/index.htm
 
 ![Swagger UI](imagens/swagger-ui.PNG)
 
-## 📡 Exemplo de resposta da API
+## Exemplo de resposta da API
 
 Exemplo de resposta JSON retornada pela API.
 
 ![Resposta da API](imagens/api-response.PNG) 
 
-## ⚙️ Como executar o projeto
+## Como executar o projeto
 
 ### Pré-requisitos
 
