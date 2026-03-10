@@ -54,7 +54,7 @@ Estrutura principal:
 
 Organização das camadas da aplicação.
 
-![Estrutura do Projeto](docs/estrutura-projeto.PNG)
+![Estrutura do Projeto](imagens/estrutura-projeto.PNG)
 
 ---
 
@@ -71,7 +71,7 @@ Após executar a aplicação, acesse: http://localhost:8080/swagger-ui/index.htm
 
 Exemplo de resposta JSON retornada pela API.
 
-![Resposta da API](docs/api-response.PNG) 
+![Resposta da API](imagens/api-response.PNG) 
 
 ## ⚙️ Como executar o projeto
 
