@@ -2,47 +2,63 @@
 
 ## 📌 Sobre o projeto
 
-Este projeto tem como objetivo praticar e demonstrar o desenvolvimento de uma API REST utilizando Spring Boot, aplicando arquitetura em camadas e boas práticas de organização de código.
+Este projeto consiste no desenvolvimento de uma API REST para gerenciamento de usuários, construída com Java e Spring Boot.  
+O objetivo foi aplicar boas práticas de desenvolvimento backend, organização em camadas e padrões comuns utilizados em aplicações corporativas.
 
-O projeto está em desenvolvimento contínuo e será evoluído gradualmente com novas funcionalidades, melhorias estruturais e boas práticas de mercado.
+A aplicação implementa operações completas de CRUD, validação de dados, tratamento global de exceções e documentação automática da API.
 
 ---
 
 ## Objetivo técnico
 
 - Aplicar arquitetura em camadas (Controller, Service, Repository)
+- Implementar um CRUD completo de usuários
 - Utilizar DTO para transferência de dados
-- Implementar CRUD completo
-- Trabalhar com persistência de dados utilizando JPA
-- Evoluir progressivamente com melhorias estruturais
+- Trabalhar com persistência utilizando Spring Data JPA
+- Implementar validação de dados com Bean Validation
+- Criar tratamento global de exceções
+- Documentar a API utilizando Swagger / OpenAPI
 
 ---
 
-## Tecnologias utilizadas até o momento
+## Tecnologias utilizadas
 
 - Java 17
 - Spring Boot
 - Spring Web
 - Spring Data JPA
 - Bean Validation
+- Swagger / OpenAPI
 - Maven
 - MariaDB
 
-Novas tecnologias poderão ser adicionadas conforme a evolução do projeto.
-
 ---
 
-## Estrutura atual do projeto
+## Arquitetura do projeto
 
 O projeto segue o padrão de arquitetura em camadas:
+
+Estrutura principal:
 
 - model → Entidades da aplicação
 - dto → Objetos de transferência de dados
 - repository → Comunicação com banco de dados
 - service → Regras de negócio
 - controller → Endpoints REST
+- exception → Tratamento global de exceções da API
+- config → Configurações da aplicação (Swagger / OpenAPI)
 
 ---
+
+## 📚 Documentação da API
+
+A API possui documentação interativa utilizando **Swagger / OpenAPI**, permitindo visualizar e testar os endpoints diretamente pelo navegador.
+
+Após executar a aplicação, acesse: http://localhost:8080/swagger-ui.html
+### Interface Swagger
+
+![Swagger UI](imagens/swagger-ui.png)
+
 
 ## ⚙️ Como executar o projeto
 
